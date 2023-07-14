@@ -281,12 +281,12 @@ const MenuItemIcon = (
   defaultDom: React.ReactNode,
   props: any,
 ): React.ReactNode => {
-  if (defaultDom) {
+  if (defaultDom && (menuItemProps.children || []).length === 0) {
     // @ts-ignore
     const menuItem = React.cloneElement(defaultDom, {
       // @ts-ignore
       children: [
-        <AIcon type={menuItemProps.icon as string} size={16} />,
+        <AIcon type={menuItemProps.icon as string} size={16} key={menuItemProps.key} />,
         defaultDom.props.children[1],
       ],
       ...props,

@@ -48,8 +48,8 @@ const Property = (props: Props) => {
   const [propertyList, setPropertyList] = useState<any[]>(data || []);
   const [dataSource, setDataSource] = useState<any>({
     total: data.length,
-    data: (data || []).slice(0, 8),
-    pageSize: 8,
+    data: (data || []).slice(0, 100),
+    pageSize: 100,
     currentPage: 0,
   });
   const devicePermission = PermissionButton.usePermission('device/Instance').permission;
@@ -58,7 +58,7 @@ const Property = (props: Props) => {
 
   const [loading1, setLoading1] = useState<boolean>(true); // 使valueChange里面能拿到最新的propertyValue
 
-  const [check, setCheck] = useState<boolean>(true);
+  const [check, setCheck] = useState<boolean>(false);
 
   const refreshProperty = async (id: string) => {
     if (!id) return;
@@ -263,7 +263,7 @@ const Property = (props: Props) => {
         }}
       />
     ),
-    [propertyValue],
+    [propertyValue, currentInfo],
   );
 
   useEffect(() => {
@@ -306,16 +306,16 @@ const Property = (props: Props) => {
                   setPropertyList(li);
                   setDataSource({
                     total: li.length,
-                    data: (li || []).slice(0, 8),
-                    pageSize: 8,
+                    data: (li || []).slice(0, 100),
+                    pageSize: 100,
                     currentPage: 0,
                   });
                 } else {
                   setPropertyList(data);
                   setDataSource({
                     total: data.length,
-                    data: (data || []).slice(0, 8),
-                    pageSize: 8,
+                    data: (data || []).slice(0, 100),
+                    pageSize: 100,
                     currentPage: 0,
                   });
                 }
@@ -363,7 +363,7 @@ const Property = (props: Props) => {
                 total={dataSource.total}
                 showSizeChanger
                 pageSize={dataSource.pageSize}
-                pageSizeOptions={[8, 16, 32, 48]}
+                pageSizeOptions={[8, 16, 32, 48, 100]}
                 onChange={(page: number, size: number) => {
                   setDataSource({
                     total: propertyList.length,
