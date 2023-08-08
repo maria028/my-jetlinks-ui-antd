@@ -9,7 +9,7 @@ import { catchError, filter, mergeMap } from 'rxjs/operators';
 import Service from '@/pages/user/Login/service';
 import * as ICONS from '@ant-design/icons';
 import React from 'react';
-import Token from "@/utils/token";
+// import Token from "@/utils/token";
 
 const Oauth = () => {
   const intl = useIntl();
@@ -21,9 +21,9 @@ const Oauth = () => {
   const [appName, setAppName] = useState<string>('');
   const [params, setParams] = useState<any>({});
   const [internal, setLinternal] = useState<any>();
-  const [headerImg, setHeaderImg] = useState(require('/public/logo.png'))
-  const [logo, setLogo] = useState('/public/logo.svg')
-  const [title, setTitle] = useState()
+  const [headerImg, setHeaderImg] = useState(require('/public/logo.png'));
+  const [logo, setLogo] = useState('/public/logo.svg');
+  const [title, setTitle] = useState<string>('');
   const loadingRef = useRef<boolean>(true);
 
   const loginRef = useRef<Partial<LoginParam>>({});
@@ -133,7 +133,7 @@ const Oauth = () => {
   };
 
   const getLoginUser = async (data?: any) => {
-    const token = localStorage.getItem('X-Access-Token')
+    const token = localStorage.getItem('X-Access-Token');
     if (token) {
       const res = await Service.queryCurrent();
       if (res && res.status === 200) {
@@ -160,7 +160,7 @@ const Oauth = () => {
         });
       }
     } else {
-      setIsLogin(false)
+      setIsLogin(false);
       initApplication(data?.client_id || params.client_id);
       setTimeout(() => {
         loadingRef.current = false;
@@ -203,9 +203,9 @@ const Oauth = () => {
       if (res.status === 200) {
         const ico: any = document.querySelector('link[rel="icon"]');
         ico.href = res.result.ico;
-        setHeaderImg(res.result.logo)
-        setLogo(res.result.logo)
-        setTitle(res.result.title || 'JetLinks')
+        setHeaderImg(res.result.logo);
+        setLogo(res.result.logo);
+        setTitle(res.result.title || '物联网基础平台');
         if (res.result.title) {
           document.title = `OAuth授权-${res.result.title}`;
         } else {
@@ -213,10 +213,10 @@ const Oauth = () => {
         }
       }
     });
-  }
+  };
 
   useEffect(() => {
-    getSettingDetail()
+    getSettingDetail();
     getCode();
   }, []);
 
@@ -272,7 +272,7 @@ const Oauth = () => {
         </div>
         <h2>授权登录</h2>
         <div className="oauth-content-login">
-          <Form form={loginForm} layout={"vertical"} size="large" onAutoSubmit={doLogin}>
+          <Form form={loginForm} layout={'vertical'} size="large" onAutoSubmit={doLogin}>
             <SchemaField schema={schema} />
             <Submit block size="large">
               {intl.formatMessage({
@@ -303,7 +303,7 @@ const Oauth = () => {
           <div className="oauth-header">
             <div className="oauth-header-left">
               <img style={{ height: 56 }} src={logo} />
-              <span style={{ fontSize: 22, fontWeight: 600 }}>{ title }</span>
+              <span style={{ fontSize: 22, fontWeight: 600 }}>{title}</span>
             </div>
             {/* <div className="oauth-header-right">
         <a style={{ color: 'rgb(0 0 0 / 70%)' }}>{userName || '-'}</a>

@@ -1,5 +1,5 @@
 export default {
-  'pages.layouts.userLayout.title': '开源物联网基础平台',
+  'pages.layouts.userLayout.title': '物联网基础平台',
   'pages.login.failure': '登录失败，请重试！',
   'pages.login.success': '登录成功！',
   'pages.login.username.placeholder': '用户名',
