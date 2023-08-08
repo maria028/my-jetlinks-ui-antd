@@ -16,7 +16,7 @@ interface BuiltInProps {
   value?: ChangeType;
   data?: any;
   onChange?: (value: ChangeType) => void;
-  optionsChange?: (value?: string) => void
+  optionsChange?: (value?: string) => void;
   name: number;
 }
 
@@ -27,7 +27,12 @@ export default (props: BuiltInProps) => {
 
   const [builtInList, setBuiltInList] = useState<any[]>([]);
 
-  const onChange = (_source: string = 'fixed', _value?: any, _upperKey?: string, options?: string) => {
+  const onChange = (
+    _source: string = 'fixed',
+    _value?: any,
+    _upperKey?: string,
+    options?: string,
+  ) => {
     const obj: ChangeType = {
       source: _source,
     };
@@ -40,8 +45,7 @@ export default (props: BuiltInProps) => {
     if (props.onChange) {
       props.onChange(obj);
     }
-    props.optionsChange?.(options)
-
+    props.optionsChange?.(options);
   };
 
   // const treeDataChildrenFilter: any = (arr: any[], type: string) => {
@@ -71,10 +75,7 @@ export default (props: BuiltInProps) => {
             });
           }
         } else {
-          if (
-            item.type === type ||
-            (type === 'double' && ['int', 'float', 'double', 'long'].includes(item.type))
-          ) {
+          if (item.type === type || ['int', 'float', 'double', 'long'].includes(item.type)) {
             list.push(item);
           }
         }
@@ -125,8 +126,8 @@ export default (props: BuiltInProps) => {
           value={upperKey}
           treeData={builtInList}
           onChange={(key, extra) => {
-            const item = extra?.[0]?.props
-            let option = item?.metadata ? item.column : undefined
+            const item = extra?.[0]?.props;
+            const option = item?.metadata ? item.column : undefined;
             onChange(source, undefined, key, option);
           }}
           fieldNames={{ label: 'name', value: 'id' }}
