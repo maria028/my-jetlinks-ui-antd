@@ -36,6 +36,7 @@ import { service as deptService } from '@/pages/system/Department';
 import { service as categoryService } from '@/pages/device/Category';
 import { onlyMessage } from '@/utils/util';
 import { isNoCommunity } from '@/utils/util';
+import userService from '@/pages/user/Login/service';
 
 export const statusMap = new Map();
 statusMap.set('在线', 'processing');
@@ -76,10 +77,20 @@ const Instance = () => {
   const [bindKeys, setBindKeys] = useState<any[]>([]);
   const history = useHistory<Record<string, string>>();
   const { permission } = PermissionButton.usePermission('device/Instance');
+  const [productPermissions, setProductPermissions] = useState<any>([]);
+
+  useEffect(() => {
+    // 获取用户详情
+    userService.userDetail().then((resp: any) => {
+      if (resp.status === 200) {
+        const description = JSON.parse(resp.result?.description || '{}');
+        setProductPermissions(description.productPermissions);
+      }
+    });
+  }, []);
 
   const intl = useIntl();
   const location = useLocation();
-
   useEffect(() => {
     if (location.state) {
       const _terms: any[] = [];
@@ -697,6 +708,23 @@ const Instance = () => {
         //   })
         // }
         request={async (params, sort) => {
+          // 如果配置了用户产品权限 该过滤等级最高
+          if (productPermissions.length > 0) {
+            const terms = productPermissions.map((e: any) => {
+              return {
+                column: 'productId',
+                termType: 'like',
+                type: 'or',
+                value: `%${e}%`,
+              };
+            });
+            if (params.terms) {
+              params.terms.push({ terms });
+            } else {
+              params.terms = terms;
+            }
+          }
+
           let sorts;
           if (sort.createTime) {
             sorts = sort.createTime === 'descend' ? 'desc' : 'asc';
