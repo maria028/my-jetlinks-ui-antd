@@ -1,3 +1,10 @@
+/*
+ * @Author: pzy 1012839072@qq.com
+ * @Date: 2023-07-13 11:36:00
+ * @LastEditors: pzy 1012839072@qq.com
+ * @LastEditTime: 2023-10-27 14:47:28
+ * @Description:
+ */
 import { Card, Tabs, Tooltip } from 'antd';
 import { InstanceModel } from '@/pages/device/Instance';
 import type { FunctionMetadata } from '@/pages/device/Product/typings';
@@ -30,9 +37,7 @@ const Functions = () => {
                       <Tabs.TabPane
                         tab={
                           <Tooltip placement="topLeft" title={fn.name}>
-                            <div className="ellipsis" style={{ width: 100 }}>
-                              {fn.name}
-                            </div>
+                            <div className="ellipsis">{fn.name}</div>
                           </Tooltip>
                         }
                         // tab={fn.name}
@@ -53,9 +58,7 @@ const Functions = () => {
                     <Tabs.TabPane
                       tab={
                         <Tooltip placement="topLeft" title={fn.name}>
-                          <div className="ellipsis" style={{ width: 100 }}>
-                            {fn.name}
-                          </div>
+                          <div className="ellipsis">{fn.name}</div>
                         </Tooltip>
                       }
                       key={fn.id}
