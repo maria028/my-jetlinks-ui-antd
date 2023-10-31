@@ -709,20 +709,24 @@ const Instance = () => {
         // }
         request={async (params, sort) => {
           // 如果配置了用户产品权限 该过滤等级最高
-          if (productPermissions.length > 0) {
-            const terms = productPermissions.map((e: any) => {
-              return {
-                column: 'productId',
-                termType: 'like',
-                type: 'or',
-                value: `%${e}%`,
-              };
-            });
-            if (params.terms) {
-              params.terms.push({ terms });
-            } else {
-              params.terms = terms;
+          try {
+            if (productPermissions && productPermissions.length > 0) {
+              const terms = productPermissions.map((e: any) => {
+                return {
+                  column: 'productId',
+                  termType: 'like',
+                  type: 'or',
+                  value: `%${e}%`,
+                };
+              });
+              if (params.terms) {
+                params.terms.push({ terms });
+              } else {
+                params.terms = terms;
+              }
             }
+          } catch (err: any) {
+            console.log(err);
           }
 
           let sorts;
