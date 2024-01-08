@@ -123,7 +123,7 @@ export default (props: FunctionProps) => {
       </div>
       <div className="right">
         <p>执行结果：</p>
-        <Input.TextArea value={result} rows={6} />
+        <Input.TextArea value={result} autoSize={{ minRows: 6 }} />
       </div>
     </div>
   );
