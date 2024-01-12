@@ -85,6 +85,7 @@ const Instance = () => {
       if (resp.status === 200) {
         const description = JSON.parse(resp.result?.description || '{}');
         setProductPermissions(description.productPermissions);
+        actionRef.current?.reset?.();
       }
     });
   }, []);
@@ -708,6 +709,8 @@ const Instance = () => {
         //   })
         // }
         request={async (params, sort) => {
+          console.log('productPermissions', productPermissions);
+
           // 如果配置了用户产品权限 该过滤等级最高
           try {
             if (productPermissions && productPermissions.length > 0) {
