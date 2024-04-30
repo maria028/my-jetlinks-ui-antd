@@ -54,14 +54,14 @@ const GlobalHeaderRight: React.FC = () => {
       {/*  //   console.log('input', value);*/}
       {/*  // }}*/}
       {/*/>*/}
-      <span
+      {/* <span
         className={styles.action}
         onClick={() => {
           window.open('http://doc.v2.jetlinks.cn');
         }}
       >
         <QuestionCircleOutlined />
-      </span>
+      </span> */}
       <span>
         <NoticeIcon />
       </span>

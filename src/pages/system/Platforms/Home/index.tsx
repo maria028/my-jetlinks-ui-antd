@@ -141,7 +141,7 @@ const Home = () => {
       <div>
         <h2>java SDK接入说明</h2>
         <div className="div-border ">
-          <div className="h3-text">JetLinks平台java SDK基于java 8版本开发。</div>
+          <div className="h3-text">平台java SDK基于java 8版本开发。</div>
         </div>
 
         <h3>添加 SDK 依赖</h3>

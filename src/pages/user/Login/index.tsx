@@ -317,7 +317,7 @@ const Login: React.FC = () => {
               </div>
             </div>
           </div>
-          {basis.recommend ? (
+          {/* {basis.recommend ? (
             <div className={styles.bottom}>
               <div className={styles.view}>JETLINKS团队全新力作可视化大屏系统</div>
               <div className={styles.url}>
@@ -331,7 +331,7 @@ const Login: React.FC = () => {
             </div>
           ) : (
             <div style={{ height: '8%' }}></div>
-          )}
+          )} */}
         </div>
         <div className={styles.right}>
           <img

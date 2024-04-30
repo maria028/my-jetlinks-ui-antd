@@ -140,7 +140,7 @@ const Import = (props: Props) => {
         },
         enum: [
           {
-            label: 'Jetlinks物模型',
+            label: '平台物模型',
             value: 'jetlinks',
           },
           {

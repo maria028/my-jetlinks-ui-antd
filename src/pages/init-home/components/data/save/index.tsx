@@ -181,7 +181,7 @@ const Save = (props: Props) => {
       <div style={{ background: 'rgb(236, 237, 238)' }}>
         <p style={{ padding: 10 }}>
           <ExclamationCircleOutlined style={{ marginRight: 5 }} />
-          初始化数据包括MQTT产品、MQTT设备、MQTT类型设备接入网关、MQTT网络组件、Jetlinks 官方协议
+          初始化数据包括MQTT产品、MQTT设备、MQTT类型设备接入网关、MQTT网络组件、官方协议
         </p>
       </div>
       <div style={{ marginTop: '20px' }}>
